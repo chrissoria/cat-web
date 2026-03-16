@@ -1,0 +1,80 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cat-web"
+dynamic = ["version"]
+description = "LLM-powered classification and extraction for web content"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "GPL-3.0-or-later"
+keywords = ["llm", "web content", "url classification", "text classification", "structured output"]
+authors = [
+  { name = "Chris Soria", email = "chrissoria@berkeley.edu" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "cat-stack>=0.1.0",
+  "pandas",
+  "tqdm",
+  "requests",
+]
+
+[project.optional-dependencies]
+pdf = ["cat-stack[pdf]"]
+
+[project.urls]
+Documentation = "https://github.com/chrissoria/cat-web#readme"
+Issues = "https://github.com/chrissoria/cat-web/issues"
+Source = "https://github.com/chrissoria/cat-web"
+
+[tool.hatch.version]
+path = "src/catweb/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/catweb tests}"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/catweb"]
+include = [
+    "src/catweb/**/*.py",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/catweb/**/*.py",
+]
+
+[tool.coverage.run]
+source_pkgs = ["catweb", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/catweb/__about__.py",
+]
+
+[tool.coverage.paths]
+catweb = ["src/catweb", "*/cat-web/src/catweb"]
+tests = ["tests", "*/cat-web/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
