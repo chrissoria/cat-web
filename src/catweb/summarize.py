@@ -31,7 +31,7 @@ def summarize(
     Wraps cat_stack.summarize() and adds:
     - Automatic URL fetching (pass a list of URLs as input_data)
     - Web context injection into the summarization prompt
-    - Original URLs preserved in the survey_input column
+    - Original URLs preserved in the input_data column
 
     Args:
         input_data: Data to summarize. Can be:
@@ -47,7 +47,7 @@ def summarize(
 
     Returns:
         pd.DataFrame: Results with summary column(s). When URLs are
-        provided, the survey_input column contains the original URLs.
+        provided, the input_data column contains the original URLs.
 
     Examples:
         >>> import catweb as cat
@@ -109,10 +109,10 @@ def summarize(
         **kwargs,
     )
 
-    # Replace fetched text with original URLs in survey_input column
+    # Replace fetched text with original URLs in input_data column
     if _url_originals is not None:
         result = result.reset_index(drop=True)
-        if "survey_input" in result.columns:
-            result["survey_input"] = _url_originals
+        if "input_data" in result.columns:
+            result["input_data"] = _url_originals
 
     return result

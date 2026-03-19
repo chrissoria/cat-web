@@ -4,7 +4,7 @@ Classification functions for CatWeb.
 Thin wrapper around cat_stack.classify() that adds web-specific features:
 - URL fetching (accepts list of URLs as input_data)
 - Web context injection (source_domain, content_type)
-- Post-classification URL preservation (original URLs in survey_input column)
+- Post-classification URL preservation (original URLs in input_data column)
 """
 
 import cat_stack
@@ -59,7 +59,7 @@ def classify(
     Wraps cat_stack.classify() and adds:
     - Automatic URL fetching (pass a list of URLs as input_data)
     - Web context injection into the classification prompt
-    - Original URLs preserved in the survey_input column
+    - Original URLs preserved in the input_data column
 
     Args:
         categories (list): List of category names for classification.
@@ -81,7 +81,7 @@ def classify(
 
     Returns:
         pd.DataFrame: Results with classification columns. When URLs are
-        provided, the survey_input column contains the original URLs
+        provided, the input_data column contains the original URLs
         (not the fetched content).
 
     Examples:
@@ -164,11 +164,11 @@ def classify(
         **kwargs,
     )
 
-    # Replace fetched text with original URLs in survey_input column
+    # Replace fetched text with original URLs in input_data column
     if _url_originals is not None:
         result = result.reset_index(drop=True)
-        if "survey_input" in result.columns:
-            result["survey_input"] = _url_originals
+        if "input_data" in result.columns:
+            result["input_data"] = _url_originals
         # Save with URLs if filename was requested
         if filename or save_directory:
             import os as _os
