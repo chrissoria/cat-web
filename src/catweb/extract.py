@@ -1,12 +1,12 @@
 """
 Category extraction functions for CatWeb.
 
-Thin wrapper around cat_stack.extract() that adds web-specific features:
+Thin wrapper around catstack.extract() that adds web-specific features:
 - URL fetching (accepts list of URLs as input_data)
 - Web context injection
 """
 
-import cat_stack
+import catstack
 
 from ._web_fetch import fetch_urls, detect_url_input
 
@@ -29,7 +29,7 @@ def extract(
     """
     Extract categories from web content (URLs or text).
 
-    Wraps cat_stack.extract() and adds:
+    Wraps catstack.extract() and adds:
     - Automatic URL fetching (pass a list of URLs as input_data)
     - Web context injection into the extraction prompt
 
@@ -44,7 +44,7 @@ def extract(
         web_metadata (dict): Additional context injected into the prompt.
         description (str): Description of the input data context.
         timeout (int): Timeout in seconds for URL fetching. Default 30.
-        **kwargs: All other parameters passed through to cat_stack.extract()
+        **kwargs: All other parameters passed through to catstack.extract()
             (e.g. max_categories, categories_per_chunk, divisions, user_model,
             creativity, specificity, research_question, filename, model_source,
             iterations, random_state, focus, etc.)
@@ -104,7 +104,7 @@ def extract(
     if web_context:
         description = f"{web_context}\n{description}".strip() if description else web_context
 
-    return cat_stack.extract(
+    return catstack.extract(
         input_data=input_data,
         api_key=api_key,
         survey_question=description,

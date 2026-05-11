@@ -1,13 +1,13 @@
 """
 Summarization functions for CatWeb.
 
-Thin wrapper around cat_stack.summarize() that adds web-specific features:
+Thin wrapper around catstack.summarize() that adds web-specific features:
 - URL fetching (accepts list of URLs as input_data)
 - Web context injection
 - Original URLs preserved in output
 """
 
-import cat_stack
+import catstack
 
 from ._web_fetch import fetch_urls, detect_url_input
 
@@ -28,7 +28,7 @@ def summarize(
     """
     Summarize web content (URLs or text) using LLMs.
 
-    Wraps cat_stack.summarize() and adds:
+    Wraps catstack.summarize() and adds:
     - Automatic URL fetching (pass a list of URLs as input_data)
     - Web context injection into the summarization prompt
     - Original URLs preserved in the input_data column
@@ -41,7 +41,7 @@ def summarize(
         content_type (str): Content type (e.g., "news article", "blog post").
         web_metadata (dict): Additional context injected into the prompt.
         timeout (int): Timeout in seconds for URL fetching. Default 30.
-        **kwargs: All parameters passed through to cat_stack.summarize()
+        **kwargs: All parameters passed through to catstack.summarize()
             (e.g. api_key, description, instructions, max_length, focus,
             user_model, models, mode, creativity, batch_mode, etc.)
 
@@ -104,7 +104,7 @@ def summarize(
         desc = kwargs.get("description", "")
         kwargs["description"] = f"{web_context}\n{desc}".strip() if desc else web_context
 
-    result = cat_stack.summarize(
+    result = catstack.summarize(
         input_data=input_data,
         **kwargs,
     )

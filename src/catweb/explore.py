@@ -1,12 +1,12 @@
 """
 Category exploration functions for CatWeb.
 
-Thin wrapper around cat_stack.explore() that adds web-specific features:
+Thin wrapper around catstack.explore() that adds web-specific features:
 - URL fetching (accepts list of URLs as input_data)
 - Web context injection
 """
 
-import cat_stack
+import catstack
 
 from ._web_fetch import fetch_urls, detect_url_input
 
@@ -29,7 +29,7 @@ def explore(
     """
     Explore categories in web content, returning the raw extracted list.
 
-    Wraps cat_stack.explore() and adds:
+    Wraps catstack.explore() and adds:
     - Automatic URL fetching (pass a list of URLs as input_data)
     - Web context injection into the exploration prompt
 
@@ -48,7 +48,7 @@ def explore(
         web_metadata (dict): Additional context injected into the prompt.
         description (str): Description of the input data context.
         timeout (int): Timeout in seconds for URL fetching. Default 30.
-        **kwargs: All other parameters passed through to cat_stack.explore()
+        **kwargs: All other parameters passed through to catstack.explore()
             (e.g. max_categories, categories_per_chunk, divisions, user_model,
             creativity, specificity, research_question, filename, model_source,
             iterations, random_state, focus, etc.)
@@ -106,7 +106,7 @@ def explore(
     if web_context:
         description = f"{web_context}\n{description}".strip() if description else web_context
 
-    return cat_stack.explore(
+    return catstack.explore(
         input_data=input_data,
         api_key=api_key,
         description=description,

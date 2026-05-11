@@ -1,11 +1,11 @@
 """
-Re-export web fetching utilities from cat_stack.
+Re-export web fetching utilities from catstack.
 
-These functions now live in cat_stack._web_fetch. This module re-exports
+These functions now live in catstack._web_fetch. This module re-exports
 them for backward compatibility within cat-web.
 """
 
-from cat_stack._web_fetch import (
+from catstack._web_fetch import (
     is_url,
     fetch_url_text,
     fetch_urls,

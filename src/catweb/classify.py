@@ -1,13 +1,13 @@
 """
 Classification functions for CatWeb.
 
-Thin wrapper around cat_stack.classify() that adds web-specific features:
+Thin wrapper around catstack.classify() that adds web-specific features:
 - URL fetching (accepts list of URLs as input_data)
 - Web context injection (source_domain, content_type)
 - Post-classification URL preservation (original URLs in input_data column)
 """
 
-import cat_stack
+import catstack
 
 from ._web_fetch import fetch_urls, is_url
 
@@ -56,7 +56,7 @@ def classify(
     """
     Classify web content (URLs) with web-specific features.
 
-    Wraps cat_stack.classify() and adds:
+    Wraps catstack.classify() and adds:
     - Automatic URL fetching (pass a list of URLs as input_data)
     - Web context injection into the classification prompt
     - Original URLs preserved in the input_data column
@@ -75,7 +75,7 @@ def classify(
         filename (str): Output filename for CSV.
         save_directory (str): Directory to save results.
         timeout (int): Timeout in seconds for URL fetching. Default 30.
-        **kwargs: All other parameters passed through to cat_stack.classify()
+        **kwargs: All other parameters passed through to catstack.classify()
             (e.g. user_model, models, creativity, batch_mode, consensus_threshold,
             chain_of_thought, thinking_budget, embeddings, etc.)
 
@@ -152,7 +152,7 @@ def classify(
     kwargs.pop("add_other", None)
     kwargs.pop("check_verbosity", None)
 
-    result = cat_stack.classify(
+    result = catstack.classify(
         input_data=input_data,
         categories=categories,
         api_key=api_key,
