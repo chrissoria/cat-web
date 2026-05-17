@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 __author__ = "Christopher Soria"
 __description__ = "LLM-powered classification and extraction for web content"
 __title__ = "cat-web"
