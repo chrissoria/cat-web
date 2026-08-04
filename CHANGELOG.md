@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   completing the two-stage discovery workflow (`explore()` ->
   `collapse_themes()`) without a second import. Its prompts are
   self-contained rather than domain-keyed, so no web wrapping applies.
+- **`[agent]` and `[codex-agent]` extras** — install the Claude- and
+  ChatGPT-subscription backends (`pip install "cat-web[agent]"`), mirroring
+  cat-stack's extras of the same names.
+
+### Fixed
+- `classify()`, `extract()`, and `explore()` no longer raise eagerly when
+  `api_key` is `None` — the subscription/CLI backends (`claude-code`,
+  `claude-agent`, `codex-agent`) and `ollama` need no key; HTTP providers
+  still get a clear missing-key error from the engine's provider layer.
 
 ### Changed
 - The `cat-stack` dependency floor is raised from `>=1.6.3` to `>=2.5.0`,

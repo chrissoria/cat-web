@@ -110,12 +110,9 @@ def classify(
         ...     api_key="your-api-key",
         ... )
     """
-    # Early validation
-    if api_key is None and kwargs.get("models") is None:
-        raise ValueError(
-            "[CatWeb] api_key is required. Pass api_key='sk-...' or use the "
-            "models= parameter for multi-model mode."
-        )
+    # api_key may be None: subscription/CLI backends (claude-code,
+    # claude-agent, codex-agent) and ollama need no key; HTTP providers get
+    # a clear missing-key error from the engine's provider layer.
 
     if input_data is None:
         raise ValueError("[CatWeb] input_data is required.")

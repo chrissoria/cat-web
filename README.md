@@ -7,9 +7,13 @@ Part of the [CatLLM ecosystem](https://github.com/chrissoria/cat-llm). Thin wrap
 ## Installation
 
 ```bash
-pip install cat-web        # pulls in cat-stack automatically
-pip install cat-web[pdf]   # with PDF support
+pip install cat-web                  # pulls in cat-stack automatically
+pip install "cat-web[pdf]"           # with PDF support
+pip install "cat-web[agent]"         # Claude-subscription backend (model_source="claude-agent")
+pip install "cat-web[codex-agent]"   # ChatGPT-subscription backend (model_source="codex-agent")
 ```
+
+The subscription backends authenticate through your Claude or ChatGPT plan instead of a metered API key — pass `model_source="claude-agent"` (or `"codex-agent"`) and leave `api_key` unset. `model_source="claude-code"` (the Claude Code CLI, if installed) needs no extra at all.
 
 ## Quick Start
 

@@ -33,6 +33,10 @@ dependencies = [
 
 [project.optional-dependencies]
 pdf = ["cat-stack[pdf]"]
+# Subscription backends: Claude (model_source="claude-agent") and ChatGPT
+# (model_source="codex-agent"). Extra names mirror cat-stack's.
+agent = ["cat-stack[agent]"]
+codex-agent = ["cat-stack[codex-agent]"]
 
 [project.urls]
 Documentation = "https://github.com/chrissoria/cat-web#readme"
