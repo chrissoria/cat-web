@@ -84,6 +84,10 @@ Raw category extraction (with duplicates) for saturation analysis.
 
 Same parameters as `extract()`, plus all cat-stack `explore()` parameters.
 
+### `collapse_themes(input_data, api_key, ...)`
+
+Consolidate the raw label inventory from `explore()` into a smaller, deduplicated taxonomy (re-exported from the shared cat-stack engine): Jaro-Winkler dedup and embedding pre-merge, quality-controlled LLM merge passes, and an optional count-guided reduction to the `top_n` most common categories. This is the same consolidation `extract()` runs internally since cat-stack 2.5.0. See the [cat-stack README](https://github.com/chrissoria/cat-stack#collapse_themes) for the full parameter table.
+
 ### `summarize(input_data, ...)`
 
 Summarize web content.

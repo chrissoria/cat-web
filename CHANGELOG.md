@@ -5,6 +5,19 @@ All notable changes to cat-web will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-08-04
+
+### Added
+- **`collapse_themes` is now re-exported from the shared cat-stack engine**,
+  completing the two-stage discovery workflow (`explore()` ->
+  `collapse_themes()`) without a second import. Its prompts are
+  self-contained rather than domain-keyed, so no web wrapping applies.
+
+### Changed
+- The `cat-stack` dependency floor is raised from `>=1.6.3` to `>=2.5.0`,
+  required for the `collapse_themes` re-export (with `top_n`/`prune`) and
+  for `extract()`'s explore -> collapse_themes consolidation engine.
+
 ## [0.2.3] - 2026-07-03
 
 ### Fixed
